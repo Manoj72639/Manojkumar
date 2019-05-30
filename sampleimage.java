@@ -3392,3 +3392,8 @@ public class SubcatList extends AppCompatActivity {
 
 
 }
+public void history(String startdate,String enddate) {  
+Cursor mCursor = db.rawQuery("SELECT * FROM "+ KK_AIRLINEBOOK + 
+                " WHERE " + KEY_Bookingdate + 
+                " BETWEEN ?  AND ?", new String[]{startdate, enddate});        
+}
