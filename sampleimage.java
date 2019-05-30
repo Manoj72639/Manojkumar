@@ -3337,6 +3337,58 @@ public class SubcatList extends AppCompatActivity {
         }
 
     }
+    
+     public void openVideoIntent() {
+
+        final CharSequence[] options = {"Take Video", "Choose from Gallery", "Cancel"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Add Video!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Video")) {
+                    Intent videoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                    if (videoIntent.resolveActivity(context.getPackageManager()) != null) {
+
+                        File videoFile = null;
+                        try {
+                            videoFile = createVideoFile();
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                        Uri VideoUri = FileProvider.getUriForFile(context, context.getPackageName() +".provider", videoFile);
+                        videoIntent.putExtra(MediaStore.EXTRA_OUTPUT, VideoUri);
+                        ((Activity)context).startActivityForResult(videoIntent, REQUEST_Video);
+                    }
+
+                } else if (options[item].equals("Choose from Gallery")) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+                    ((Activity)context).startActivityForResult(intent, REQUEST_Video_Gallary);
+
+                } else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        builder.show();
+
+
+
+    }
+
+	    <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
 
 }
