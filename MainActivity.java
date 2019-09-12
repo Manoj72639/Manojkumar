@@ -121,13 +121,14 @@ public class MainActivity extends AppCompatActivity {
 
     ////////////////////////////////////// My Sample
     
-    package com.androidtutorialpoint.mycontacts;
+   package com.androidtutorialpoint.mycontacts;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -225,7 +226,11 @@ public class MainActivity extends AppCompatActivity {
         number_edit_text1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                value ="";
+                if (number_edit_text1.getText().toString().isEmpty())
+                {
+                    value ="";
+                }
+
             }
 
             @Override
@@ -236,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
 
+                Log.e("myvalue",""+value);
                 if (number_edit_text1.getText().toString().isEmpty())
                 {
                     value ="";
