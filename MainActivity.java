@@ -119,5 +119,160 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+    ////////////////////////////////////// My Sample
+    
+    package com.androidtutorialpoint.mycontacts;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private LinearLayout parentLinearLayout;
+    EditText number_edit_text;
+    Button delete_button;
+    View view;
+
+    String value="",valu1="";
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
+        number_edit_text = (EditText) findViewById(R.id.number_edit_text);
+        delete_button = (Button) findViewById(R.id.delete_button);
+       /* if (number_edit_text.getText().toString().length()>=1)
+        {
+
+            onAddField(view);
+        }
+        else
+        {
+
+        }*/
+
+        number_edit_text.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if (number_edit_text.getText().toString().isEmpty())
+                {
+                    valu1 ="";
+                }
+                else
+                {
+                    if (valu1.isEmpty())
+                    {
+                        if (number_edit_text.getText().toString().length()>=1)
+                        {
+
+                            onAddField(view);
+                            valu1 ="1";
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+
+            }
+        });
+
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Do Not Delete Main Layout", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+    public void onAddField(View v) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.field, null);
+        // Add the new row before the add field button.
+        final EditText number_edit_text1=(EditText)rowView.findViewById(R.id.number_edit_text1);
+        Button delete_button1=(Button) rowView.findViewById(R.id.delete_button1);
+
+
+        parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
+
+        number_edit_text1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                value ="";
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if (number_edit_text1.getText().toString().isEmpty())
+                {
+                    value ="";
+                }
+                else
+                {
+                    if (value.isEmpty())
+                    {
+                        if (number_edit_text1.getText().toString().length()>=1)
+                        {
+
+                            onAddField(view);
+                            value ="1";
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+
+            }
+        });
+
+    }
+
+    public void onDelete(View v) {
+        parentLinearLayout.removeView((View) v.getParent());
+    }
+
+}
+
+    
 
 }
