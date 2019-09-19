@@ -279,6 +279,259 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-    
+ ////// recyclerview
+
+
+    package com.ardhas.samplemy;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.util.SparseBooleanArray;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText edit_text1;
+    ImageView delete_text1;
+    RecyclerView recycle_main;
+    String value="",valu1="";
+    View view;
+    private LinearLayout parentLinearLayout;
+    RecyclerViewAdapter adapter;
+   // private List<ModelClass> IncidentListDetails;
+    private List<SampleModel> movieList = new ArrayList<>();
+    SampleModel Model;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
+        edit_text1 = (EditText) findViewById(R.id.edit_text1);
+        delete_text1 = (ImageView) findViewById(R.id.delete_text1);
+        recycle_main = (RecyclerView) findViewById(R.id.recycle_main);
+
+
+
+        adapter = new RecyclerViewAdapter(movieList,MainActivity.this);
+
+        recycle_main.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(MainActivity.this);
+        recycle_main.setLayoutManager(mLayoutManager);
+        recycle_main.addItemDecoration(new DividerItemDecoration(MainActivity.this, LinearLayoutManager.VERTICAL));
+        recycle_main.setItemAnimator(new DefaultItemAnimator());
+        recycle_main.setAdapter(adapter);
+
+
+        delete_text1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               /* Model = new SampleModel("");
+                movieList.add(Model);
+                prepareMovieData();*/
+            }
+        });
+
+        edit_text1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                Log.e("1",edit_text1.getText().toString());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.e("2",edit_text1.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if (edit_text1.getText().toString().length()==1)
+                {
+                    Model= new SampleModel("");
+                    movieList.add(Model);
+                    prepareMovieData();
+                }
+
+               /* Model = new SampleModel("1");
+                movieList.add(Model);
+                prepareMovieData();
+                Log.e("3",edit_text1.getText().toString());
+                if (edit_text1.getText().toString().isEmpty())
+                {
+                    valu1 ="";
+                    Log.e("4",edit_text1.getText().toString());
+                }
+                else
+                {
+                    if (valu1.isEmpty())
+                    {
+                        if (edit_text1.getText().toString().length()>=2)
+                        {
+                            Model = new SampleModel("1");
+                            movieList.add(Model);
+                            prepareMovieData();
+                            Log.e("5",edit_text1.getText().toString());
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }*/
+
+
+            }
+        });
+
+       // prepareMovieData();
+    }
+    public void prepareMovieData() {
+
+
+        // notify adapter about data set changes
+        // so that it will render the list with new data
+
+                adapter.notifyDataSetChanged();
+
+
+    }
+
+
+    public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ListItemViewHolder> {
+
+        Activity context;
+        private List<SampleModel> sampleList;
+
+        public RecyclerViewAdapter(List<SampleModel> sampleList, Activity context) {
+            this.context = context;
+            this.sampleList = sampleList;
+
+        }
+
+        @Override
+        public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+            View itemView = LayoutInflater.
+                    from(viewGroup.getContext()).
+                    inflate(R.layout.list_item, viewGroup, false);
+            return new ListItemViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(final ListItemViewHolder viewHolder, final int position) {
+            final SampleModel list = sampleList.get(position);
+
+
+            viewHolder.edit_text.setText(list.getTitle());
+            viewHolder.edit_text.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+                    if ( viewHolder.edit_text.getText().toString().length()==1)
+                    {
+                        Toast.makeText(context, "check", Toast.LENGTH_SHORT).show();
+                        Model= new SampleModel("");
+                        sampleList.add(Model);
+                        notifyDataSetChanged();
+                    }
+
+                   /* if ( viewHolder.edit_text.getText().toString().isEmpty())
+                    {
+                        valu1 ="";
+                    }
+                    else
+                    {
+                        if (valu1.isEmpty())
+                        {
+                            if ( viewHolder.edit_text.getText().toString().length()>=1)
+                            {
+                                Model = new SampleModel(viewHolder.edit_text.getText().toString());
+                                movieList.add(Model);
+                                prepareMovieData();
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                    }*/
+
+
+                }
+            });
+
+            viewHolder.delete_text.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sampleList.remove(position);
+//                    movieList.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
+
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return sampleList.size();
+        }
+
+
+        public final class ListItemViewHolder extends RecyclerView.ViewHolder {
+
+
+            EditText edit_text;
+            ImageView delete_text;
+
+            public ListItemViewHolder(View itemView) {
+                super(itemView);
+                edit_text = (EditText) itemView.findViewById(R.id.edit_text);
+                delete_text = (ImageView) itemView.findViewById(R.id.delete_text);
+
+            }
+        }
+    }
 
 }
+
