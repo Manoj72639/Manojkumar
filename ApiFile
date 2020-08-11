@@ -1,0 +1,26 @@
+
+public interface ApiInterface {
+
+ String BASE_URL = "";
+
+ @Headers("Content-Type: application/json")
+ @POST("login/getNotification")
+ Call<NotificationResponseModel> getNotifiList(@Body String project);
+
+
+ //Unit  & project
+ @Headers("Content-Type: application/json")
+ @POST("inc/Incident/unit")
+ Call<UnitResponseModel> getUnitDetails(@Body String unit);
+
+
+
+ @GET("chemical/ChemicalAdd/product_name")
+ Call<ProductNameDropdwonResponseModel> getProduct_DropDownValues();
+
+
+
+ 
+
+}
+
