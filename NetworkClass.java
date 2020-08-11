@@ -22,37 +22,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class NetworkClass {
 
-
-    // String BASE_URL = "https://ardhas.tk/event/v1/event-api/eve_attendance/Attendance/";
-    //String BASE_URL = "http://13.126.29.69/EventManagementDoha/event-api/eve_attendance/Attendance/";
-    //String BASE_URL = "http://192.168.0.250/neoesh/dev/v1/neoehs-api/";
-    // String BASE_URL = "http://192.168.0.250/neoesh/dev/current_demo/neoehs-api/";
-    // String BASE_URL = "http://103.88.129.32/neoesh/dev/current_demo/neoehs-api/";
-    //String BASE_URL = "http://52.66.184.170/dev/current_audit/current_demo/neoehs-api/";
-    //String BASE_URL = "http://52.66.184.170/dev/current_demo/neoehs-api/";
-   // String BASE_URL = "http://52.66.184.170/dev_demo/v1/neoehs-api/";
-    // String BASE_URL = "http://52.66.184.170/dev_demo/current_demo/current_demo/neoehs-api/";
-  //  String BASE_URL = "http://52.66.184.170/dev_demo/current_demo/construction_neoehs/current_demo/neoehs-api/";
-   // String BASE_URL = "http://52.66.184.170/dev_demo/current_demo/demo_bal/neoehs-api/";
-
-   // String BASE_URL = "http://52.66.184.170/dev_demo/current_demo/neoehs_ban_airport/neoehs-api/";
-
-  //  String BASE_URL = "http://52.66.184.170/dev_demo/current_demo/current_demo/neoehs-api/";
-    String BASE_URL = "http://52.66.184.170/dev_demo/current_demo/current_demo_maly/neoehs-api/";
+    String BASE_URL = "";
 
 
 
-    //dev/current_demo/
-    //String BASE_URL = "http://52.66.184.170/dev/demo_app/current_demo/neoehs-api/";
-    // String BASE_URL = "http://52.66.184.170/dev/current_demo/neoehs-api/";
-
-    //String BASE_URL = "http://13.126 .106.36/dev_demo/v1/neoehs-api/";
-    // String BASE_URL = "http://13.126.106.36/dev_demo/v1/neoehs-api/";
-    //String BASE_URL = "http://192.168.0.250/neoesh/dev/vdemo/neoehs-api/";
-
-    //String BASE_URL = "http://13.126.29.69/event/demo/event-api/eve_attendance/Attendance/";
-    //  String BASE_URL = "http://52.66.175.90/event/v1/event-api/eve_attendance/Attendance/";
-    // String BASE_URL = "http://13.126.29.69/event/v1/event-api/eve_attendance/Attendance/";
+  
 
     public static Retrofit retrofitRef;
 
